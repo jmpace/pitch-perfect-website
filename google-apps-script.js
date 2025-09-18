@@ -32,27 +32,48 @@ function doPost(e) {
       
       console.log('Successfully added email:', email);
       
-      return ContentService
-        .createTextOutput(JSON.stringify({success: true, message: 'Email saved successfully'}))
-        .setMimeType(ContentService.MimeType.JSON);
+    return ContentService
+      .createTextOutput(JSON.stringify({success: true, message: 'Email saved successfully'}))
+      .setMimeType(ContentService.MimeType.JSON)
+      .setHeader('Access-Control-Allow-Origin', 'https://ptchprfct.ai')
+      .setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS')
+      .setHeader('Access-Control-Allow-Headers', 'Content-Type');
         
     } catch (sheetError) {
       console.error('Sheet error:', sheetError);
       return ContentService
         .createTextOutput(JSON.stringify({error: 'Sheet error: ' + sheetError.toString()}))
-        .setMimeType(ContentService.MimeType.JSON);
+        .setMimeType(ContentService.MimeType.JSON)
+        .setHeader('Access-Control-Allow-Origin', 'https://ptchprfct.ai')
+        .setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS')
+        .setHeader('Access-Control-Allow-Headers', 'Content-Type');
     }
       
   } catch (error) {
     console.error('General error:', error);
     return ContentService
       .createTextOutput(JSON.stringify({error: 'Failed to save email: ' + error.toString()}))
-      .setMimeType(ContentService.MimeType.JSON);
+      .setMimeType(ContentService.MimeType.JSON)
+      .setHeader('Access-Control-Allow-Origin', 'https://ptchprfct.ai')
+      .setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS')
+      .setHeader('Access-Control-Allow-Headers', 'Content-Type');
   }
 }
 
 function doGet(e) {
   return ContentService
     .createTextOutput('This endpoint only accepts POST requests')
-    .setMimeType(ContentService.MimeType.TEXT);
+    .setMimeType(ContentService.MimeType.TEXT)
+    .setHeader('Access-Control-Allow-Origin', 'https://ptchprfct.ai')
+    .setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS')
+    .setHeader('Access-Control-Allow-Headers', 'Content-Type');
+}
+
+function doOptions(e) {
+  return ContentService
+    .createTextOutput('')
+    .setMimeType(ContentService.MimeType.TEXT)
+    .setHeader('Access-Control-Allow-Origin', 'https://ptchprfct.ai')
+    .setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS')
+    .setHeader('Access-Control-Allow-Headers', 'Content-Type');
 }
