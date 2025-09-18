@@ -3,8 +3,7 @@ const nextConfig = {
     experimental: {
         optimizePackageImports: ["@untitledui/icons"],
     },
-    // Cloudflare Pages configuration
-    output: 'export',
+    // Cloudflare Pages configuration - remove static export to support API routes
     trailingSlash: true,
     images: {
         unoptimized: true,
