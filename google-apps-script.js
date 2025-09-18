@@ -3,9 +3,14 @@
 
 function doPost(e) {
   try {
+    // Log the incoming request for debugging
+    console.log('Received POST request:', e.postData);
+    
     // Parse the incoming data
     const data = JSON.parse(e.postData.contents);
     const email = data.email;
+    
+    console.log('Parsed email:', email);
     
     if (!email) {
       return ContentService
@@ -13,18 +18,33 @@ function doPost(e) {
         .setMimeType(ContentService.MimeType.JSON);
     }
     
-    // Get the spreadsheet by ID
+    // Get the spreadsheet by ID - UPDATE THIS WITH YOUR ACTUAL SPREADSHEET ID
     const SPREADSHEET_ID = '18R9U3D4RnKKgd77qoMoYEoUyusXGnLUx0u44ah6R9nA';
-    const sheet = SpreadsheetApp.openById(SPREADSHEET_ID).getSheetByName('Sheet1');
     
-    // Add the email to the next available row in column A
-    sheet.appendRow([email]);
-    
-    return ContentService
-      .createTextOutput(JSON.stringify({success: true, message: 'Email saved successfully'}))
-      .setMimeType(ContentService.MimeType.JSON);
+    try {
+      const spreadsheet = SpreadsheetApp.openById(SPREADSHEET_ID);
+      const sheet = spreadsheet.getSheetByName('Sheet1');
+      
+      console.log('Found sheet:', sheet.getName());
+      
+      // Add the email to the next available row in column A
+      sheet.appendRow([email]);
+      
+      console.log('Successfully added email:', email);
+      
+      return ContentService
+        .createTextOutput(JSON.stringify({success: true, message: 'Email saved successfully'}))
+        .setMimeType(ContentService.MimeType.JSON);
+        
+    } catch (sheetError) {
+      console.error('Sheet error:', sheetError);
+      return ContentService
+        .createTextOutput(JSON.stringify({error: 'Sheet error: ' + sheetError.toString()}))
+        .setMimeType(ContentService.MimeType.JSON);
+    }
       
   } catch (error) {
+    console.error('General error:', error);
     return ContentService
       .createTextOutput(JSON.stringify({error: 'Failed to save email: ' + error.toString()}))
       .setMimeType(ContentService.MimeType.JSON);

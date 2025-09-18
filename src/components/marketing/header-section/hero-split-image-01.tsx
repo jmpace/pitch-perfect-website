@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment } from "react";
+import { Fragment, useRef } from "react";
 import { ArrowRight } from "@untitledui/icons";
 import { BadgeGroup } from "@/components/base/badges/badge-groups";
 import { Button } from "@/components/base/buttons/button";
@@ -9,6 +9,8 @@ import { Input } from "@/components/base/input/input";
 import { Header } from "@/components/marketing/header-navigation/header";
 
 export const HeroSplitImage01 = () => {
+    const formRef = useRef<HTMLFormElement>(null);
+
     return (
         <Fragment>
             <Header className="bg-primary" />
@@ -33,12 +35,14 @@ export const HeroSplitImage01 = () => {
                         </p>
 
                         <Form
+                            ref={formRef}
                             onSubmit={async (e) => {
                                 e.preventDefault();
                                 const formData = new FormData(e.currentTarget);
                                 const email = formData.get('email') as string;
                                 
                                 try {
+                                    console.log('Submitting email:', email);
                                     const response = await fetch('/api/subscribe', {
                                         method: 'POST',
                                         headers: {
@@ -47,13 +51,16 @@ export const HeroSplitImage01 = () => {
                                         body: JSON.stringify({ email }),
                                     });
 
+                                    console.log('API response status:', response.status);
                                     const result = await response.json();
+                                    console.log('API response data:', result);
                                     
                                     if (response.ok) {
                                         alert('Thanks! We\'ll notify you when we launch.');
-                                        e.currentTarget.reset();
+                                        formRef.current?.reset();
                                     } else {
-                                        alert('Something went wrong. Please try again.');
+                                        console.error('API Error:', result);
+                                        alert(`Error: ${result.error || 'Something went wrong. Please try again.'}`);
                                     }
                                 } catch (error) {
                                     console.error('Error submitting email:', error);

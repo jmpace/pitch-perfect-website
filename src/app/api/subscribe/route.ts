@@ -2,7 +2,9 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(request: NextRequest) {
   try {
+    console.log('=== API Route Called ===');
     const { email } = await request.json();
+    console.log('Received email:', email);
 
     if (!email) {
       return NextResponse.json({ error: 'Email is required' }, { status: 400 });
@@ -28,6 +30,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Send to Google Apps Script
+    console.log('Sending email to Google Apps Script:', email);
     const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
       method: 'POST',
       headers: {
@@ -36,8 +39,12 @@ export async function POST(request: NextRequest) {
       body: JSON.stringify({ email }),
     });
 
+    const responseText = await response.text();
+    console.log('Google Apps Script response:', responseText);
+
     if (!response.ok) {
-      throw new Error('Failed to save to Google Sheets');
+      console.error('Google Apps Script error:', response.status, responseText);
+      throw new Error(`Failed to save to Google Sheets: ${response.status} - ${responseText}`);
     }
 
     return NextResponse.json({ 

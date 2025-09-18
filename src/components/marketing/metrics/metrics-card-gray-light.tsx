@@ -5,7 +5,7 @@ export const MetricsCardGrayLight = () => {
         <section className="bg-primary py-16 md:py-24">
             <div className="mx-auto max-w-container px-4 md:px-8">
                 <div className="flex flex-col gap-8 rounded-2xl bg-secondary px-6 py-10 md:gap-16 md:rounded-none md:bg-transparent md:p-0">
-                    <div className="flex w-full flex-col self-center text-center md:max-w-3xl">
+                    <div className="flex w-full flex-col self-center text-center md:max-w-2xl">
                         <h2 className="text-display-sm font-semibold text-primary md:text-display-md">Target the right investors with a pitch that actually resonates.</h2>
                         <p className="mt-4 text-lg text-tertiary md:mt-5 md:text-xl"></p>
                     </div>
