@@ -3,6 +3,10 @@ import { NextRequest, NextResponse } from 'next/server';
 export async function POST(request: NextRequest) {
   try {
     console.log('=== API Route Called ===');
+    console.log('Environment check:', {
+      hasGoogleScriptUrl: !!process.env.GOOGLE_APPS_SCRIPT_URL,
+      googleScriptUrl: process.env.GOOGLE_APPS_SCRIPT_URL ? 'Set' : 'Not set'
+    });
     const { email } = await request.json();
     console.log('Received email:', email);
 
