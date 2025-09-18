@@ -8,6 +8,7 @@ export async function GET() {
       googleScriptUrl: process.env.GOOGLE_APPS_SCRIPT_URL ? 'Set' : 'Not set',
       nodeEnv: process.env.NODE_ENV
     },
-    timestamp: new Date().toISOString()
+    timestamp: new Date().toISOString(),
+    deployment: 'cloudflare-redeploy-trigger'
   });
 }
