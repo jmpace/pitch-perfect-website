@@ -43,7 +43,11 @@ export const HeroSplitImage01 = () => {
                                 
                                 try {
                                     console.log('Submitting email:', email);
-                                    const response = await fetch('/api/subscribe', {
+                                    
+                                    // Call Google Apps Script directly (client-side)
+                                    const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxOcXNyO0NrU_hzAMjVwwzqkqUlTZbaODZi7muWQpriIoMs4Hw_9tNOiPASHNQnHQ3Uzg/exec';
+                                    
+                                    const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
                                         method: 'POST',
                                         headers: {
                                             'Content-Type': 'application/json',
@@ -51,15 +55,15 @@ export const HeroSplitImage01 = () => {
                                         body: JSON.stringify({ email }),
                                     });
 
-                                    console.log('API response status:', response.status);
+                                    console.log('Google Apps Script response status:', response.status);
                                     const result = await response.json();
-                                    console.log('API response data:', result);
+                                    console.log('Google Apps Script response data:', result);
                                     
                                     if (response.ok) {
                                         alert('Thanks! We\'ll notify you when we launch.');
                                         formRef.current?.reset();
                                     } else {
-                                        console.error('API Error:', result);
+                                        console.error('Google Apps Script Error:', result);
                                         alert(`Error: ${result.error || 'Something went wrong. Please try again.'}`);
                                     }
                                 } catch (error) {
