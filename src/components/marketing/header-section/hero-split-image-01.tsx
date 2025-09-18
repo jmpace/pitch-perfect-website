@@ -45,7 +45,7 @@ export const HeroSplitImage01 = () => {
                                     console.log('Submitting email:', email);
                                     
                                     // Call Google Apps Script directly (client-side)
-                                    const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxWEgFwKdJgRC680T-rMO9ao2Z8T2-hjTaKdUBpNWP35SEUy8oUXRg70KIOx5dUm0m7YA/exec';
+                                    const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzOO3tk2itKG1mVzQS_FdCGRpWQ0cNk6zWNBTaw_9i93IdtcUrqKa21u79AYJ0NpfauNQ/exec';
                                     
                                     // Use form data instead of JSON to avoid CORS preflight
                                     const formData = new FormData();
