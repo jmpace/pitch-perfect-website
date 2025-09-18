@@ -58,6 +58,7 @@ export const HeroSplitImage01 = () => {
                                     console.log('Google Apps Script response status:', response.status);
                                     const result = await response.json();
                                     console.log('Google Apps Script response data:', result);
+                                    console.log('Testing updated Google Apps Script with CORS fixes');
                                     
                                     if (response.ok) {
                                         alert('Thanks! We\'ll notify you when we launch.');
