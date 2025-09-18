@@ -6,9 +6,15 @@ function doPost(e) {
     // Log the incoming request for debugging
     console.log('Received POST request:', e.postData);
     
-    // Parse the incoming data
-    const data = JSON.parse(e.postData.contents);
-    const email = data.email;
+    // Parse the incoming data (handle both JSON and form data)
+    let email;
+    if (e.postData.type === 'application/json') {
+      const data = JSON.parse(e.postData.contents);
+      email = data.email;
+    } else {
+      // Handle form data
+      email = e.parameter.email;
+    }
     
     console.log('Parsed email:', email);
     

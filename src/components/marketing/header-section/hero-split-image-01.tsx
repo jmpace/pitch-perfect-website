@@ -47,12 +47,13 @@ export const HeroSplitImage01 = () => {
                                     // Call Google Apps Script directly (client-side)
                                     const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxOcXNyO0NrU_hzAMjVwwzqkqUlTZbaODZi7muWQpriIoMs4Hw_9tNOiPASHNQnHQ3Uzg/exec';
                                     
+                                    // Use form data instead of JSON to avoid CORS preflight
+                                    const formData = new FormData();
+                                    formData.append('email', email);
+                                    
                                     const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
                                         method: 'POST',
-                                        headers: {
-                                            'Content-Type': 'application/json',
-                                        },
-                                        body: JSON.stringify({ email }),
+                                        body: formData,
                                     });
 
                                     console.log('Google Apps Script response status:', response.status);
