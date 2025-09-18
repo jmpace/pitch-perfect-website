@@ -57,7 +57,7 @@ export const HeroSplitImage01 = () => {
                                     });
 
                                     console.log('Google Apps Script response status:', response.status);
-                                    const result = await response.json();
+                                    const result = await response.text();
                                     console.log('Google Apps Script response data:', result);
                                     console.log('Testing updated Google Apps Script with CORS fixes');
                                     
@@ -66,7 +66,7 @@ export const HeroSplitImage01 = () => {
                                         formRef.current?.reset();
                                     } else {
                                         console.error('Google Apps Script Error:', result);
-                                        alert(`Error: ${result.error || 'Something went wrong. Please try again.'}`);
+                                        alert(`Error: ${result || 'Something went wrong. Please try again.'}`);
                                     }
                                 } catch (error) {
                                     console.error('Error submitting email:', error);
