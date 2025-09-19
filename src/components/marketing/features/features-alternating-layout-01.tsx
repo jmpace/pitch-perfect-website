@@ -29,9 +29,9 @@ export const FeaturesAlternatingLayout01 = () => {
             <div className="mx-auto w-full max-w-container px-4 md:px-8">
                 <div className="mx-auto flex w-full max-w-3xl flex-col items-center text-center">
                     <span className="text-sm font-semibold text-brand-secondary md:text-md">Solution</span>
-                    <h2 className="mt-3 text-display-sm font-semibold text-primary md:text-display-md">Beautiful analytics to grow smarter</h2>
+                    <h2 className="mt-3 text-display-sm font-semibold text-primary md:text-display-md">Close Your Round in Weeks, Not Months</h2>
                     <p className="mt-4 text-lg text-tertiary md:mt-5 md:text-xl">
-                        Powerful, self-serve product and growth analytics to help you convert, engage, and retain more users. Trusted by over 4,000 startups.
+                    Data-driven fundraising intelligence that shows you exactly what to fix in your pitch, which investors to target, and how to reach them—all in one unified platform.
                     </p>
                 </div>
             </div>
