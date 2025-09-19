@@ -14,15 +14,15 @@ export const MetricsCardGrayLight = () => {
                         {[
                             {
                                 title: "3X",
-                                subtitle: "Triple Your Funding Success Rate",
+                                subtitle: "Higher response rate",
                             },
                             {
                                 title: "50%",
-                                subtitle: "Reduce Investor Meetings by 50%",
+                                subtitle: "Fewer meetings needed%",
                             },
                             {
-                                title: "-6 Months",
-                                subtitle: "Preserve 6+ Months of Runway",
+                                title: "6 Months",
+                                subtitle: "Faster to close",
                             },
                         ].map((item, index) => (
                             <div key={index} className="flex flex-1 flex-col-reverse gap-5 text-center">
